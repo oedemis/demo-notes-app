@@ -59,3 +59,21 @@ This is because the JavaScript event loop, which handles asynchronous callbacks,
 So in essence, await pauses the execution of the async function until the Promise is resolved, but it does not block the execution of other functions or operations in your JavaScript code. This allows JavaScript to efficiently manage multiple operations concurrently, even though JavaScript is single-threaded.
 
 Therefore, you can think of await as a way to tell JavaScript: "Continue executing other code, and come back to this function once the Promise resolves". It's a way to write asynchronous code that is easier to read and reason about, since it looks more like synchronous code.
+
+# Autentication
+Authenticate against our User Pool and acquire a user token.
+With the user token get temporary IAM credentials from our Identity Pool.
+Use the IAM credentials to sign our API request with Signature Version 4.
+
+npx aws-api-gateway-cli-test \
+--username='osman@osman.com' \
+--password='Passw0rd!' \
+--user-pool-id='eu-central-1_vys3CAjfR' \
+--app-client-id='1vt8pdpcvj73d32nbums5qiqo9' \
+--cognito-region='eu-central-1' \
+--identity-pool-id='eu-central-1:ee08bdbf-f1e8-4adb-9912-a8a148d3a70c' \
+--invoke-url='https://8a7qpoil81.execute-api.eu-central-1.amazonaws.com' \
+--api-gateway-region='eu-central-1' \
+--path-template='/notes' \
+--method='POST' \
+--body='{"content":"hello world","attachment":"hello.jpg"}'

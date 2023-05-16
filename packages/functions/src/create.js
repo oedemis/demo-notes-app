@@ -9,8 +9,8 @@ export const main = handler(async (event) => {
     const params = {
         TableName: Table.Notes.tableName,
         Item: {
-            // The attributes of the item to be created
-            userId: "123", // The id of the author
+            // id that’s assigned to our user by our Cognito Identity Pool.
+            userId: event.requestContext.authorizer.iam.cognitoIdentity.identityId,
             noteId: uuid.v1(), // A unique uuid
             content: data.content, // Parsed from request body
             attachment: data.attachment, // Parsed from request body

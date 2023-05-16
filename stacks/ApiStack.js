@@ -8,6 +8,7 @@ export function ApiStack({ stack, app }) {
     // Create the API
     const api = new Api(stack, "Api", {
         defaults: {
+            authorizer: "iam",
             function: {
                 // We are binding our DynamoDB table to our API using the bind prop. This will allow our API to access our table.
                 bind: [table],
